@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Login">
+
+	<insert id="Add" parameterType="map">
+		INSERT INTO testnlms.logins (userName, context, logTime)
+		VALUES (#{p.userName}, #{p.context}, #{p.logTime})
+	</insert>
+
+	<delete id="Delete" parameterType="java.lang.String">
+		DELETE FROM testnlms.logins 
+		WHERE userName = #{userName}
+	</delete>
+	
+	<select id="GetLoginByUserContext" resultType="Login" parameterType="map">
+		SELECT * FROM testnlms.logins WHERE userName = #{p.userName} AND context = #{p.context}
+	</select>
+
+</mapper>

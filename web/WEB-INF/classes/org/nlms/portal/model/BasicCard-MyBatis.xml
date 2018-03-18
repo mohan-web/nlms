@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Basic">
+
+	<select id="GetByMandal" resultType="BasicCard" parameterType="map">
+		SELECT name, aadhaar, village FROM testnlms.sanctioned_beneficiary_details WHERE UPPER(mandal) IN (select unnest(regexp_split_to_array(UPPER(#{p.mandal}), ',')));
+	</select>
+	
+	<select id="GetBenificiaryByaadhaar" resultType="BasicBenificiary" parameterType="map">
+		SELECT 
+			s.name, 
+			s.aadhaar, 
+			s.FatherOrHusbandName, 
+			s.village, 
+			s.mandal, 
+			s.district, 
+			s.farmerId, 
+			s.sanctionOderId, 
+			s.department, 
+			s.schemeName, 
+			s.unitCost,
+			s.subsidy,
+			s.benificiaryContrib,
+			s.year,
+			d.proceedingNo, 
+			d.siNoOfTheProceeding,
+			d.dateOfGrounding,
+			d.placeOfGrounding,
+			d.sellerName, 
+			d.sellerFatherOrHusbandName,
+			d.sellerAddress,
+			d.sellerAadhar,
+			d.sellerAccountNumber, 
+			d.amountPaid,
+			d.chequeNoIssuedByTheDvaho,
+			d.date
+		FROM testnlms.sanctioned_beneficiary_details s LEFT JOIN testnlms.dvaho d 
+		ON UPPER(s.name) = UPPER(d.benificiaryname) WHERE aadhaar = #{p.aadhaar}
+	</select>
+
+</mapper>

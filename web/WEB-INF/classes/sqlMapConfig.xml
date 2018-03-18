@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+    	<typeAlias alias="Login" type="org.nlms.security.model.Login" />
+    	<typeAlias alias="User" type="org.nlms.security.model.User" />
+    	<typeAlias alias="BasicCard" type="org.nlms.portal.model.BasicCard" />
+    	<typeAlias alias="BasicBenificiary" type="org.nlms.portal.model.BasicBenificiary" />
+    </typeAliases>
+    
+    <mappers>
+    	<mapper resource="org/nlms/security/model/Login-MyBatis.xml"/>
+    	<mapper resource="org/nlms/security/model/User-MyBatis.xml"/>
+    	<mapper resource="org/nlms/portal/model/BasicCard-MyBatis.xml"/>
+    </mappers>
+</configuration>
